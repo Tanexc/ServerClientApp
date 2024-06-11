@@ -1,4 +1,4 @@
-package ru.tanexc.server.ui.theme
+package ru.tanexc.server.presentation.ui.theme
 
 import android.app.Activity
 import android.os.Build

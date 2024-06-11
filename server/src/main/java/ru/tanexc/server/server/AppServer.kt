@@ -3,5 +3,5 @@ package ru.tanexc.server.server
 interface AppServer {
     fun stop()
 
-    fun start()
+    fun start(port: Int = 8081)
 }
