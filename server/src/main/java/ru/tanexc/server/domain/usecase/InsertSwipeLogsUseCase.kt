@@ -1,9 +1,10 @@
 package ru.tanexc.server.domain.usecase
 
+import android.util.Log
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
-import ru.tanexc.server.core.DataState
-import ru.tanexc.server.data.SwipeLogDao
+import ru.tanexc.server.core.util.DataState
+import ru.tanexc.server.data.local.SwipeLogDao
 import ru.tanexc.server.domain.model.SwipeLog
 
 class InsertSwipeLogsUseCase(
@@ -15,6 +16,7 @@ class InsertSwipeLogsUseCase(
             swipeLogDao.insert(log)
             emit(DataState.Success(Unit))
         } catch (e: Exception) {
+            Log.i("cum", e.message?: "xo")
             emit(DataState.Error)
         }
     }

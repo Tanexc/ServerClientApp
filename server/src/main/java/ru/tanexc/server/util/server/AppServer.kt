@@ -1,4 +1,4 @@
-package ru.tanexc.server.server
+package ru.tanexc.server.util.server
 
 interface AppServer {
     fun stop()

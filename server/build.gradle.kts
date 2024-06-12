@@ -65,6 +65,8 @@ dependencies {
     // ktor
     implementation(libs.ktor.server.core.jvm)
     implementation(libs.ktor.server.netty.jvm)
+    implementation(libs.ktor.server.websockets)
+    implementation(libs.ktor.serialization.kotlinx.protobuf)
 
     implementation(libs.ktor.server.content.negotiation)
     implementation(libs.ktor.serialization.jackson.jvm)
@@ -73,7 +75,6 @@ dependencies {
     // koin
     implementation(libs.koin.android)
     implementation(libs.koin.androidx.compose)
-    implementation(libs.koin.ktor)
 
     // coroutines
     implementation(libs.kotlinx.coroutines.android)

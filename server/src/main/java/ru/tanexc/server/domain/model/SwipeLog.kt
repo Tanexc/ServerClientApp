@@ -5,8 +5,8 @@ import androidx.room.PrimaryKey
 
 @Entity(tableName = "swipelog")
 data class SwipeLog(
-    @PrimaryKey
-    val id: Long = 0,
+    @PrimaryKey(autoGenerate = true)
+    val id: Long,
     val client: String,
-    val info: String
+    val info: String,
 )

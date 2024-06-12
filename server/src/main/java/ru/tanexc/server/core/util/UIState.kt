@@ -1,4 +1,4 @@
-package ru.tanexc.server.core
+package ru.tanexc.server.core.util
 
 enum class UIState {
     Loding, Success, Error

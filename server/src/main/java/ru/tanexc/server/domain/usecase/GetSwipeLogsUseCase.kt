@@ -1,10 +1,9 @@
 package ru.tanexc.server.domain.usecase
 
-import androidx.compose.ui.geometry.Offset
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
-import ru.tanexc.server.core.DataState
-import ru.tanexc.server.data.SwipeLogDao
+import ru.tanexc.server.core.util.DataState
+import ru.tanexc.server.data.local.SwipeLogDao
 import ru.tanexc.server.domain.model.SwipeLog
 
 class GetSwipeLogsUseCase(

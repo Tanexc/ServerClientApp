@@ -1,4 +1,4 @@
-package ru.tanexc.server.service
+package ru.tanexc.server.util.service
 
 enum class Actions {
     START, STOP

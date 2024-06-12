@@ -62,6 +62,8 @@ ktor-serialization-kotlinx-json-jvm = { module = "io.ktor:ktor-serialization-kot
 ktor-server-content-negotiation = { module = "io.ktor:ktor-server-content-negotiation", version.ref = "ktorServer" }
 ktor-server-core-jvm = { module = "io.ktor:ktor-server-core-jvm", version.ref = "ktorServer" }
 ktor-server-netty-jvm = { module = "io.ktor:ktor-server-netty-jvm", version.ref = "ktorServer" }
+ktor-server-websockets = { module = "io.ktor:ktor-server-websockets", version.ref = "ktorServer"  }
+ktor-serialization-kotlinx-protobuf = { module = "io.ktor:ktor-serialization-kotlinx-protobuf", version.ref = "ktorServer" }
 
 # data
 androidx-datastore-preferences = { module = "androidx.datastore:datastore-preferences", version.ref = "datastorePreferences" }

@@ -2,8 +2,8 @@ package ru.tanexc.server.domain.usecase
 
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
-import ru.tanexc.server.core.DataState
-import ru.tanexc.server.data.SwipeLogDao
+import ru.tanexc.server.core.util.DataState
+import ru.tanexc.server.data.local.SwipeLogDao
 
 class DeleteSwipeLogsByIdUseCase(
     private val swipeLogDao: SwipeLogDao

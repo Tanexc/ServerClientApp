@@ -15,11 +15,11 @@ class ServerApplication: Application() {
     override fun onCreate() {
         super.onCreate()
         startKoin {
-            androidContext(this@ServerApplication)
+            androidContext(applicationContext)
             modules(
-                serverModule,
                 databaseModule,
-                viewModelModule
+                viewModelModule,
+                serverModule,
             )
         }
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {

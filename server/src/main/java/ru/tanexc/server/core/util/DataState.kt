@@ -1,4 +1,4 @@
-package ru.tanexc.server.core
+package ru.tanexc.server.core.util
 
 sealed class DataState<out T> {
     data object Loading: DataState<Nothing>()

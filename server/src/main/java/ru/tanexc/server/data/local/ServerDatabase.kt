@@ -1,4 +1,4 @@
-package ru.tanexc.server.data
+package ru.tanexc.server.data.local
 
 import androidx.room.Database
 import androidx.room.RoomDatabase

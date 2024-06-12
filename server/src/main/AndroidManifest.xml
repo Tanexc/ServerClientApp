@@ -27,7 +27,7 @@
         </activity>
 
         <service
-            android:name=".service.ServerService"
+            android:name=".util.service.ServerService"
             android:foregroundServiceType="remoteMessaging"
             android:exported="false">
         </service>
