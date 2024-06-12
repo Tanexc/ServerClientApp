@@ -24,6 +24,7 @@ import org.koin.android.ext.android.inject
 import org.koin.java.KoinJavaComponent.inject
 import ru.tanexc.client.core.DataState
 import ru.tanexc.client.data.ConnectionController
+import ru.tanexc.client.presentation.LaunchScreen
 import ru.tanexc.client.presentation.ui.theme.ServerClientAppTheme
 
 class MainActivity : ComponentActivity() {
@@ -32,28 +33,7 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             ServerClientAppTheme {
-                Surface {
-                    Column(
-                        Modifier.fillMaxSize(),
-                        verticalArrangement = Arrangement.Center,
-                        horizontalAlignment = Alignment.CenterHorizontally
-                    ) {
-                        Row(Modifier.fillMaxWidth()) {
-                            OutlinedTextField(
-                                port.value,
-                                enabled = running.value == ServiceState.Stopped,
-                                modifier = Modifier.fillMaxWidth(),
-                                onValueChange = {
-                                    if (it.toIntOrNull() != null || it == "") {
-                                        port.value = it
-                                    }
-                                },
-                                label = { Text("Port") },
-                                placeholder = { Text("$PORT_DEFAULT", modifier = Modifier.alpha(0.5f)) }
-                            )
-                        }
-                    }
-                }
+                LaunchScreen()
             }
         }
     }

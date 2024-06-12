@@ -59,9 +59,11 @@ class AppServerImpl(
                         val message = receiveDeserialized<ClientMessage>()
                         launch(Dispatchers.IO) {
                             val log = SwipeLog(
-                                0,
                                 client = message.client,
-                                info = message.message
+                                info = message.message,
+                                dx = message.dx,
+                                dy = message.dy,
+                                duration = message.duration
                             )
                             insertSwipeLogsUseCase(log).collect { state ->
                                 when(state) {

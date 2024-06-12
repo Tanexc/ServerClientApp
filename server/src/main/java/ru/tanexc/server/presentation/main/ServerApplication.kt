@@ -1,4 +1,4 @@
-package ru.tanexc.server.presentation.screen.main
+package ru.tanexc.server.presentation.main
 
 import android.app.Application
 import android.app.NotificationChannel

@@ -18,6 +18,7 @@ import ru.tanexc.client.core.DataState
 import ru.tanexc.client.data.local.clientId
 import ru.tanexc.client.model.ClientMessage
 import ru.tanexc.client.model.ServerMessage
+import kotlin.time.Duration
 
 class ConnectionController(
     private val client: HttpClient,
@@ -34,7 +35,6 @@ class ConnectionController(
 
         clientId = dataStore.clientId()
         session = client.webSocketSession(host = host, port = port, path = "/test")
-        session.sendSerialized(ClientMessage(clientId, System.currentTimeMillis().toString()))
 
         while (session.isActive) {
             val message = session.receiveDeserialized<ServerMessage>()
@@ -45,9 +45,9 @@ class ConnectionController(
         }
     }
 
-    suspend fun send(message: String) {
+    suspend fun send(message: String, dx: Double, dy: Double, duration: Long, chromeOpened: Boolean) {
         if (session.isActive) {
-            session.sendSerialized(ClientMessage(clientId, message))
+            session.sendSerialized(ClientMessage(clientId, message, dx, dy, duration, chromeOpened))
         }
     }
 
