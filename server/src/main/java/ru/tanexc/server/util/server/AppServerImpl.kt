@@ -23,6 +23,7 @@ import io.ktor.util.Digest
 import io.ktor.websocket.close
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.coroutineScope
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.serialization.json.Json
 import org.koin.core.component.KoinComponent
@@ -57,6 +58,7 @@ class AppServerImpl(
                     sendSerialized(getServerGestureMessage())
                     while(true) {
                         val message = receiveDeserialized<ClientMessage>()
+                        delay(2000)
                         launch(Dispatchers.IO) {
                             val log = SwipeLog(
                                 client = message.client,

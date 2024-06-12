@@ -30,11 +30,12 @@ class ConnectionController(
     fun connect(
         host: String,
         port: Int,
+        onConnected: suspend ConnectionController.() -> Unit
     ): Flow<DataState<ServerMessage>> = flow {
         emit(DataState.Loading)
 
         clientId = dataStore.clientId()
-        session = client.webSocketSession(host = host, port = port, path = "/test")
+        session = client.webSocketSession(host = host, port = port, path = "/gestures")
 
         while (session.isActive) {
             val message = session.receiveDeserialized<ServerMessage>()

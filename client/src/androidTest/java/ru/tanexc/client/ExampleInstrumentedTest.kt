@@ -1,4 +1,4 @@
-package ru.tanexc.serverclientapp
+package ru.tanexc.client
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4

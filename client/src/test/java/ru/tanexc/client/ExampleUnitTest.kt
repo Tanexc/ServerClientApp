@@ -1,4 +1,4 @@
-package ru.tanexc.serverclientapp
+package ru.tanexc.client
 
 import org.junit.Test
 
