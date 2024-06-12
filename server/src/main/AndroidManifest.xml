@@ -8,7 +8,7 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
 
     <application
-        android:name=".presentation.ServerApplication"
+        android:name=".presentation.screen.main.ServerApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -16,7 +16,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ServerClientApp">
         <activity
-            android:name=".presentation.ServerMainActivity"
+            android:name=".presentation.screen.main.ServerMainActivity"
             android:exported="true"
             android:theme="@style/Theme.ServerClientApp">
             <intent-filter>

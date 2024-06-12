@@ -2,17 +2,21 @@ package ru.tanexc.server.data
 
 import androidx.room.Dao
 import androidx.room.Delete
+import androidx.room.Insert
 import androidx.room.Query
 import ru.tanexc.server.domain.model.SwipeLog
 
 @Dao
 interface SwipeLogDao {
-    @Query("SELECT * from swipelog")
-    suspend fun getAll(): List<SwipeLog>
+    @Query("select * from swipelog limit :limit offset :offset")
+    suspend fun getAll(limit: Int = 20, offset: Int): List<SwipeLog>
 
-    @Delete(SwipeLog::class)
+    @Query("delete from swipelog")
     suspend fun deleteAll()
 
-    @Delete
+    @Query("delete from swipelog where id = :id")
     suspend fun deleteById(id: Long)
+
+    @Insert
+    suspend fun insert(log: SwipeLog)
 }

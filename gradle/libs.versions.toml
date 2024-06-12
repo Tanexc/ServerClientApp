@@ -16,6 +16,8 @@ activityCompose = "1.9.0"
 composeBom = "2024.05.00"
 compose = "1.6.10"
 room = "2.6.1"
+icons = "1.6.7"
+navigation = "1.5.0"
 
 [libraries]
 androidx-core = { module = "androidx.core:core", version.ref = "coreKtx" }
@@ -33,6 +35,8 @@ androidx-ui-tooling-preview = { group = "androidx.compose.ui", name = "ui-toolin
 androidx-ui-test-manifest = { group = "androidx.compose.ui", name = "ui-test-manifest" }
 androidx-ui-test-junit4 = { group = "androidx.compose.ui", name = "ui-test-junit4" }
 androidx-material3 = { group = "androidx.compose.material3", name = "material3" }
+icons-extended = {group = "androidx.compose.material", name = "material-icons-extended", version.ref = "icons"}
+androidx-navigation = {group = "androidx.navigation", name = "navigation-compose", version.ref="navigation"}
 
 # koin DI
 koin-android = { module = "io.insert-koin:koin-android", version.ref = "koin" }
@@ -49,6 +53,8 @@ ktor-client-core = { module = "io.ktor:ktor-client-core", version.ref = "ktorCli
 kotlinx-coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "coroutines" }
 kotlinx-coroutines-android = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-android", version.ref = "coroutines" }
 
+# navigation
+navigation-reimagined = { module = "dev.olshevski.navigation:reimagined", version.ref = "navigation" }
 
 # ktor server
 ktor-serialization-jackson-jvm = { module = "io.ktor:ktor-serialization-jackson-jvm", version.ref = "ktorServer" }
@@ -61,6 +67,7 @@ ktor-server-netty-jvm = { module = "io.ktor:ktor-server-netty-jvm", version.ref 
 androidx-datastore-preferences = { module = "androidx.datastore:datastore-preferences", version.ref = "datastorePreferences" }
 androidx-room-compiler = { module = "androidx.room:room-compiler", version.ref="room" }
 androidx-room-runtime = { module = "androidx.room:room-runtime", version.ref="room"  }
+androidx-room-ktx = { group = "androidx.room", name = "room-ktx", version.ref = "room" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

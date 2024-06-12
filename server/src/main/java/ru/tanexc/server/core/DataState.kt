@@ -5,5 +5,5 @@ sealed class DataState<out T> {
 
     data object Error: DataState<Nothing>()
 
-    class Success<T>(val data: T): DataState<T>()
+    class Success<out T>(val data: T): DataState<T>()
 }

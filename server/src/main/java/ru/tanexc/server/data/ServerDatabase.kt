@@ -2,9 +2,10 @@ package ru.tanexc.server.data
 
 import androidx.room.Database
 import androidx.room.RoomDatabase
+import ru.tanexc.server.domain.model.SwipeLog
 
 @Database(
-    entities = [SwipeLogDao::class],
+    entities = [SwipeLog::class],
     exportSchema = false,
     version = 1,
 )

@@ -1,4 +1,4 @@
-package ru.tanexc.server.presentation
+package ru.tanexc.server.presentation.screen.main
 
 import android.app.Application
 import android.app.NotificationChannel
@@ -9,6 +9,7 @@ import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
 import ru.tanexc.server.core.di.databaseModule
 import ru.tanexc.server.core.di.serverModule
+import ru.tanexc.server.core.di.viewModelModule
 
 class ServerApplication: Application() {
     override fun onCreate() {
@@ -17,7 +18,8 @@ class ServerApplication: Application() {
             androidContext(this@ServerApplication)
             modules(
                 serverModule,
-                databaseModule
+                databaseModule,
+                viewModelModule
             )
         }
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
