@@ -53,7 +53,7 @@ class AppServerImpl(
                 contentConverter = JacksonWebsocketContentConverter()
             }
             routing {
-                webSocket("/test") {
+                webSocket("/gestures") {
                     sendSerialized(getServerGestureMessage())
                     while(true) {
                         val message = receiveDeserialized<ClientMessage>()

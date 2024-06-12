@@ -58,8 +58,12 @@ dependencies {
     // ktor
     implementation(libs.ktor.client.core)
     implementation(libs.ktor.client.cio)
+    implementation(libs.ktor.serialization.jackson.jvm)
 
     // koin
     implementation(libs.koin.android)
     implementation(libs.koin.androidx.compose)
+
+    // datastore
+    implementation(libs.androidx.datastore.preferences)
 }

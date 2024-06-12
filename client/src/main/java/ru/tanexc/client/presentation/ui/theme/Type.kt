@@ -1,4 +1,4 @@
-package ru.tanexc.serverclientapp.ui.theme
+package ru.tanexc.client.presentation.ui.theme
 
 import androidx.compose.material3.Typography
 import androidx.compose.ui.text.TextStyle
