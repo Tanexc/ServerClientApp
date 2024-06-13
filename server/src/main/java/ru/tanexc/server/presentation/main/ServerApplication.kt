@@ -8,7 +8,9 @@ import androidx.annotation.RequiresApi
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
 import ru.tanexc.server.core.di.databaseModule
+import ru.tanexc.server.core.di.datastoreModule
 import ru.tanexc.server.core.di.serverModule
+import ru.tanexc.server.core.di.usecaseModule
 import ru.tanexc.server.core.di.viewModelModule
 
 class ServerApplication: Application() {
@@ -18,6 +20,8 @@ class ServerApplication: Application() {
             androidContext(applicationContext)
             modules(
                 databaseModule,
+                datastoreModule,
+                usecaseModule,
                 viewModelModule,
                 serverModule,
             )

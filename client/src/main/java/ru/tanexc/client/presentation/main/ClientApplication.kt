@@ -8,6 +8,7 @@ import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
 import ru.tanexc.client.core.di.datastoreModule
 import ru.tanexc.client.core.di.networkModule
+import ru.tanexc.client.core.di.usecaseModule
 
 class ClientApplication: Application() {
     override fun onCreate() {
@@ -17,9 +18,9 @@ class ClientApplication: Application() {
             modules(
                 datastoreModule,
                 networkModule,
+                usecaseModule
             )
         }
-
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             val channel = NotificationChannel(
                 "client_channel",

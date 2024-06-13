@@ -79,7 +79,7 @@ class ClientService : AccessibilityService() {
             }
 
             Actions.STOP.name -> {
-                started = false
+
                 stopSelf()
             }
         }
