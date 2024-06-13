@@ -1,40 +1,34 @@
 package ru.tanexc.client.data
 
-import androidx.datastore.core.DataStore
-import androidx.datastore.preferences.core.Preferences
 import io.ktor.client.HttpClient
 import io.ktor.client.plugins.websocket.DefaultClientWebSocketSession
 import io.ktor.client.plugins.websocket.receiveDeserialized
 import io.ktor.client.plugins.websocket.sendSerialized
-import io.ktor.client.plugins.websocket.webSocket
 import io.ktor.client.plugins.websocket.webSocketSession
 import io.ktor.websocket.CloseReason
 import io.ktor.websocket.close
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.isActive
-import ru.tanexc.client.core.DataState
-import ru.tanexc.client.data.local.clientId
-import ru.tanexc.client.model.ClientMessage
-import ru.tanexc.client.model.ServerMessage
-import kotlin.time.Duration
+import ru.tanexc.client.core.util.DataState
+import ru.tanexc.client.domain.model.ClientMessage
+import ru.tanexc.client.domain.model.ServerMessage
+import ru.tanexc.client.domain.usecase.GetClientIdUseCase
 
 class ConnectionController(
     private val client: HttpClient,
-    private val dataStore: DataStore<Preferences>
+    private val getClientIdUseCase: GetClientIdUseCase
 ) {
     private lateinit var clientId: String
     private lateinit var session: DefaultClientWebSocketSession
 
     fun connect(
         host: String,
-        port: Int,
-        onConnected: suspend ConnectionController.() -> Unit
+        port: Int
     ): Flow<DataState<ServerMessage>> = flow {
         emit(DataState.Loading)
 
-        clientId = dataStore.clientId()
+        clientId = getClientIdUseCase()
         session = client.webSocketSession(host = host, port = port, path = "/gestures")
 
         while (session.isActive) {

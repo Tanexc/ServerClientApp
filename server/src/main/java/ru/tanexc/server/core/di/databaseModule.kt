@@ -4,12 +4,12 @@ import androidx.room.Room
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.module.dsl.singleOf
 import org.koin.dsl.module
-import ru.tanexc.server.data.local.ServerDatabase
-import ru.tanexc.server.data.local.SwipeLogDao
-import ru.tanexc.server.domain.usecase.DeleteSwipeLogsByIdUseCase
-import ru.tanexc.server.domain.usecase.DeleteSwipeLogsUseCase
-import ru.tanexc.server.domain.usecase.GetSwipeLogsUseCase
-import ru.tanexc.server.domain.usecase.InsertSwipeLogsUseCase
+import ru.tanexc.server.data.database.ServerDatabase
+import ru.tanexc.server.data.database.SwipeLogDao
+import ru.tanexc.server.domain.usecase.logs.DeleteSwipeLogsByIdUseCase
+import ru.tanexc.server.domain.usecase.logs.DeleteSwipeLogsUseCase
+import ru.tanexc.server.domain.usecase.logs.GetSwipeLogsUseCase
+import ru.tanexc.server.domain.usecase.logs.InsertSwipeLogsUseCase
 
 val databaseModule = module {
     single<ServerDatabase> {

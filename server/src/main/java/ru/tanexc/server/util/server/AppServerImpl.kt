@@ -1,10 +1,8 @@
 package ru.tanexc.server.util.server
 
-import android.provider.ContactsContract.Data
 import com.fasterxml.jackson.databind.SerializationFeature
 import io.ktor.serialization.jackson.JacksonWebsocketContentConverter
 import io.ktor.serialization.jackson.jackson
-import io.ktor.serialization.kotlinx.KotlinxWebsocketSerializationConverter
 import io.ktor.serialization.kotlinx.json.json
 import io.ktor.server.application.call
 import io.ktor.server.application.install
@@ -19,19 +17,14 @@ import io.ktor.server.websocket.WebSockets
 import io.ktor.server.websocket.receiveDeserialized
 import io.ktor.server.websocket.sendSerialized
 import io.ktor.server.websocket.webSocket
-import io.ktor.util.Digest
 import io.ktor.websocket.close
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
-import kotlinx.serialization.json.Json
-import org.koin.core.component.KoinComponent
 import ru.tanexc.server.core.util.DataState
 import ru.tanexc.server.domain.model.ClientMessage
-import ru.tanexc.server.domain.model.ServerMessage
 import ru.tanexc.server.domain.model.SwipeLog
-import ru.tanexc.server.domain.usecase.InsertSwipeLogsUseCase
+import ru.tanexc.server.domain.usecase.logs.InsertSwipeLogsUseCase
 
 class AppServerImpl(
     private val insertSwipeLogsUseCase: InsertSwipeLogsUseCase

@@ -12,9 +12,9 @@ import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import org.koin.android.ext.android.inject
-import ru.tanexc.client.core.DataState
-import ru.tanexc.client.core.util.HOST_DEFAULT
-import ru.tanexc.client.core.util.PORT_DEFAULT
+import ru.tanexc.client.core.util.DataState
+import ru.tanexc.client.core.HOST_DEFAULT
+import ru.tanexc.client.core.PORT_DEFAULT
 import ru.tanexc.client.data.ConnectionController
 import ru.tanexc.serverclientapp.R
 
@@ -24,52 +24,16 @@ class ClientService : AccessibilityService() {
     private var started: Boolean = false
     private var port = 0
     private var host = ""
-    private lateinit var activityManager: ActivityManager
 
     override fun onAccessibilityEvent(event: AccessibilityEvent?) {
-
-    }
-
-    override fun onInterrupt() {
-
-    }
-
-    override fun onServiceConnected() {
-        super.onServiceConnected()
-        scope.launch(Dispatchers.IO) {
-            delay(3000)
-            controller.connect(
-                host,
-                port,
-                onConnected = { send("Connected", 0.0, 0.0, 0, true) }
-            ).collect { state ->
-                when (state) {
-                    is DataState.Success -> {
-                        val data = state.data
-                        if (started) {
-                            gesture(
-                                data.dx,
-                                data.dy,
-                                data.duration
-                            )
-                            controller.send(
-                                "Gesture done",
-                                data.dx,
-                                data.dy,
-                                data.duration,
-                                true
-                            )
-                        }
-
-                    }
-
-                    else -> {}
-
-                }
+        when(event?.eventType) {
+            AccessibilityEvent.TYPE_WINDOW_CONTENT_CHANGED -> {
+                started = false
             }
         }
-
     }
+
+    override fun onInterrupt() {}
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
         when (intent?.action) {
@@ -79,7 +43,38 @@ class ClientService : AccessibilityService() {
                     launchChrome()
                     port = intent.getIntExtra("port", PORT_DEFAULT)
                     host = intent.getStringExtra("host") ?: HOST_DEFAULT
-                    started = true
+                    scope.launch(Dispatchers.IO) {
+                        delay(3000)
+                        started = true
+                        controller.connect(
+                            host,
+                            port,
+                        ).collect { state ->
+                            when (state) {
+                                is DataState.Success -> {
+                                    val data = state.data
+                                    if (started) {
+                                        gesture(
+                                            data.dx,
+                                            data.dy,
+                                            data.duration
+                                        )
+                                        controller.send(
+                                            "Gesture done",
+                                            data.dx,
+                                            data.dy,
+                                            data.duration,
+                                            true
+                                        )
+                                    }
+
+                                }
+
+                                else -> {}
+
+                            }
+                        }
+                    }
                 }
             }
 

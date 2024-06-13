@@ -12,9 +12,9 @@ import kotlinx.coroutines.launch
 import ru.tanexc.server.core.util.DataState
 import ru.tanexc.server.core.util.UIState
 import ru.tanexc.server.domain.model.SwipeLog
-import ru.tanexc.server.domain.usecase.DeleteSwipeLogsByIdUseCase
-import ru.tanexc.server.domain.usecase.DeleteSwipeLogsUseCase
-import ru.tanexc.server.domain.usecase.GetSwipeLogsUseCase
+import ru.tanexc.server.domain.usecase.logs.DeleteSwipeLogsByIdUseCase
+import ru.tanexc.server.domain.usecase.logs.DeleteSwipeLogsUseCase
+import ru.tanexc.server.domain.usecase.logs.GetSwipeLogsUseCase
 
 class LogsViewModel(
     private val getLogsUseCase: GetSwipeLogsUseCase,

@@ -58,7 +58,7 @@ fun LaunchScreen(modifier: Modifier) {
                     modifier = Modifier.fillMaxWidth(),
                     enabled = running.value == ServiceState.Stopped,
                     onClick = {
-                        running.value = ServiceState.Runnning
+                        running.value = ServiceState.Running
                         Intent(
                             context.applicationContext,
                             ServerService::class.java
@@ -75,7 +75,7 @@ fun LaunchScreen(modifier: Modifier) {
             } else {
                 OutlinedButton(
                     modifier = Modifier.fillMaxWidth(),
-                    enabled = running.value == ServiceState.Runnning,
+                    enabled = running.value == ServiceState.Running,
                     onClick = {
                         running.value = ServiceState.Stopping
                         Intent(

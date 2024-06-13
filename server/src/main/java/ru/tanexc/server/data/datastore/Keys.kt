@@ -1,8 +1,7 @@
-package ru.tanexc.client.data.local
+package ru.tanexc.server.data.datastore
 
 import androidx.datastore.preferences.core.stringPreferencesKey
 
 object Keys {
-    val CLIENT_ID = stringPreferencesKey("device_id")
     val SERVICE_STATE = stringPreferencesKey("service_state")
 }
