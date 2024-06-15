@@ -3,7 +3,6 @@ package ru.tanexc.server.util.server
 import io.ktor.server.engine.ApplicationEngine
 import io.ktor.server.engine.embeddedServer
 import io.ktor.server.netty.Netty
-import io.ktor.server.routing.get
 import io.ktor.server.routing.routing
 import io.ktor.server.websocket.receiveDeserialized
 import io.ktor.server.websocket.sendSerialized

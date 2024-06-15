@@ -1,6 +1,7 @@
 package ru.tanexc.client.service
 
 import android.accessibilityservice.AccessibilityService
+import android.app.PendingIntent
 import android.content.Intent
 import android.net.Uri
 import android.view.accessibility.AccessibilityEvent

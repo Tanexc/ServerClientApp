@@ -15,7 +15,6 @@ import ru.tanexc.server.domain.usecase.servicestate.SetServiceStateUseCase
 
 class LaunchViewModel(
     private val getServiceStateUseCase: GetServiceStateUseCase,
-    private val setServiceStateUseCase: SetServiceStateUseCase,
     private val getPortUseCase: GetPortUseCase,
     private val setPortUseCase: SetPortUseCase,
 ) : ViewModel() {
@@ -38,12 +37,6 @@ class LaunchViewModel(
         _port.value = port
         viewModelScope.launch(Dispatchers.IO) {
             if (port != "") setPortUseCase(port.toInt())
-        }
-    }
-
-    fun setServiceState(state: ServiceState) {
-        viewModelScope.launch(Dispatchers.IO) {
-            setServiceStateUseCase(state)
         }
     }
 }
