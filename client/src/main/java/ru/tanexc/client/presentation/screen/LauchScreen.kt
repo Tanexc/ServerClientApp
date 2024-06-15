@@ -40,7 +40,6 @@ import ru.tanexc.client.core.util.ServiceState
 import ru.tanexc.client.core.util.isAccessibilityEnabled
 import ru.tanexc.client.service.ClientService
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun LaunchScreen() {
     val viewModel: LaunchViewModel = koinViewModel()

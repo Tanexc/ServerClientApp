@@ -8,10 +8,15 @@ import ru.tanexc.server.domain.usecase.logs.InsertSwipeLogsUseCase
 import ru.tanexc.server.domain.usecase.logs.GetSwipeLogsUseCase
 import ru.tanexc.server.domain.usecase.logs.DeleteSwipeLogsUseCase
 import ru.tanexc.server.domain.usecase.logs.DeleteSwipeLogsByIdUseCase
+import ru.tanexc.server.domain.usecase.servicestate.GetPortUseCase
+import ru.tanexc.server.domain.usecase.servicestate.SetPortUseCase
 
 val usecaseModule = module {
     singleOf(::SetServiceStateUseCase)
     singleOf(::GetServiceStateUseCase)
+    singleOf(::SetPortUseCase)
+    singleOf(::GetPortUseCase)
+
     singleOf(::InsertSwipeLogsUseCase)
     singleOf(::GetSwipeLogsUseCase)
     singleOf(::DeleteSwipeLogsUseCase)

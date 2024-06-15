@@ -6,15 +6,14 @@ import androidx.datastore.preferences.core.edit
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
 import org.koin.core.qualifier.named
-import ru.tanexc.server.core.util.ServiceState
 import ru.tanexc.server.data.datastore.Keys
 
-class SetServiceStateUseCase: KoinComponent {
-    private val dataStore: DataStore<Preferences> by inject(named("service"))
+class SetPortUseCase: KoinComponent {
+    private val dataStore: DataStore<Preferences> by inject(named("server"))
 
-    suspend operator fun invoke(state: ServiceState) {
+    suspend operator fun invoke(port: Int) {
         dataStore.edit {
-            it[Keys.SERVICE_STATE] = state.name
+            it[Keys.PORT] = port.toString()
         }
     }
 }

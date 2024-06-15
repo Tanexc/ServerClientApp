@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material3.Button
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Surface
@@ -21,6 +22,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
+import org.koin.androidx.compose.koinViewModel
 import ru.tanexc.server.core.PORT_DEFAULT
 import ru.tanexc.server.core.util.ServiceState
 import ru.tanexc.server.util.service.Actions
@@ -28,7 +30,7 @@ import ru.tanexc.server.util.service.ServerService
 
 @Composable
 fun LaunchScreen(modifier: Modifier) {
-    val running = remember { mutableStateOf(ServiceState.Stopped) }
+    val viewModel: LaunchViewModel = koinViewModel()
     val context = LocalContext.current
 
     Surface(modifier = modifier.fillMaxSize()) {
@@ -39,56 +41,61 @@ fun LaunchScreen(modifier: Modifier) {
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center
         ) {
-            val port = remember { mutableStateOf("") }
             OutlinedTextField(
-                port.value,
-                enabled = running.value == ServiceState.Stopped,
+                viewModel.port,
+                enabled = viewModel.serviceState == ServiceState.Stopped,
                 modifier = Modifier.fillMaxWidth(),
                 onValueChange = {
                     if (it.toIntOrNull() != null || it == "") {
-                        port.value = it
+                        viewModel.setPort(it)
                     }
                 },
                 label = { Text("Port") },
                 placeholder = { Text("$PORT_DEFAULT", modifier = Modifier.alpha(0.5f)) }
             )
             Spacer(Modifier.size(8.dp))
-            if (running.value == ServiceState.Stopped) {
-                Button(
-                    modifier = Modifier.fillMaxWidth(),
-                    enabled = running.value == ServiceState.Stopped,
-                    onClick = {
-                        running.value = ServiceState.Running
-                        Intent(
-                            context.applicationContext,
-                            ServerService::class.java
-                        ).also { service ->
-                            service.action = Actions.START.name
-                            service.putExtra(
-                                "port",
-                                port.value.let { if (it == "") PORT_DEFAULT else it.toInt() })
-                            context.startService(service)
-                        }
-                    }) {
-                    Text("Start server")
+            when(viewModel.serviceState) {
+                ServiceState.Running -> {
+                    OutlinedButton(
+                        modifier = Modifier.fillMaxWidth(),
+                        enabled = viewModel.serviceState == ServiceState.Running,
+                        onClick = {
+                            Intent(
+                                context.applicationContext,
+                                ServerService::class.java
+                            ).also {
+                                it.action = Actions.STOP.name
+                                context.applicationContext.startService(it)
+                            }
+
+                        }) {
+                        Text("Stop server")
+                    }
                 }
-            } else {
-                OutlinedButton(
-                    modifier = Modifier.fillMaxWidth(),
-                    enabled = running.value == ServiceState.Running,
-                    onClick = {
-                        running.value = ServiceState.Stopping
-                        Intent(
-                            context.applicationContext,
-                            ServerService::class.java
-                        ).also { service ->
-                            service.action = Actions.STOP.name
-                            context.startService(service)
-                        }
-                        running.value = ServiceState.Stopped
-                    }) {
-                    Text("Stop server")
+
+                ServiceState.Stopping -> {
+                    CircularProgressIndicator(Modifier.size(28.dp))
                 }
+
+                else -> {
+                    Button(
+                        modifier = Modifier.fillMaxWidth(),
+                        enabled = viewModel.serviceState == ServiceState.Stopped,
+                        onClick = {
+                            if (viewModel.serviceState != ServiceState.Running) {
+                                Intent(
+                                    context.applicationContext,
+                                    ServerService::class.java
+                                ).also {
+                                    it.action = Actions.START.name
+                                    context.applicationContext.startService(it)
+                                }
+                            }
+                        }) {
+                        Text("Start server")
+                    }
+                }
+
             }
         }
     }

@@ -73,7 +73,7 @@ fun LogsScreen(modifier: Modifier) {
             Box(Modifier.align(Alignment.Center).background(colorScheme.secondary.copy(0.12f), RoundedCornerShape(16.dp))) {
                 Column(Modifier.padding(16.dp), horizontalAlignment = Alignment.CenterHorizontally) {
                     Icon(Icons.AutoMirrored.Outlined.TextSnippet, null, modifier = Modifier.size(56.dp))
-                    Text("Logs would be displayed here")
+                    Text("Logs will be displayed here")
                 }
             }
 

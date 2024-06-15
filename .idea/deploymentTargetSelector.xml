@@ -7,7 +7,7 @@
       </SelectionState>
       <SelectionState runConfigName="client">
         <option name="selectionMode" value="DROPDOWN" />
-        <DropdownSelection timestamp="2024-06-12T18:56:19.596738Z">
+        <DropdownSelection timestamp="2024-06-15T02:14:16.897829Z">
           <Target type="DEFAULT_BOOT">
             <handle>
               <DeviceId pluginId="LocalEmulator" identifier="path=/Users/tanexc/.android/avd/Pixel_3a_API_34_extension_level_7_arm64-v8a.avd" />
@@ -18,10 +18,10 @@
       </SelectionState>
       <SelectionState runConfigName="server">
         <option name="selectionMode" value="DROPDOWN" />
-        <DropdownSelection timestamp="2024-06-12T18:56:05.124945Z">
+        <DropdownSelection timestamp="2024-06-15T02:18:33.953744Z">
           <Target type="DEFAULT_BOOT">
             <handle>
-              <DeviceId pluginId="LocalEmulator" identifier="path=/Users/tanexc/.android/avd/Pixel_3a_API_34_extension_level_7_arm64-v8a.avd" />
+              <DeviceId pluginId="PhysicalDevice" identifier="serial=c91388db" />
             </handle>
           </Target>
         </DropdownSelection>

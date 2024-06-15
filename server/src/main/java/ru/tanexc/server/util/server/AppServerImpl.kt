@@ -34,7 +34,10 @@ class AppServerImpl(
     private lateinit var engine: ApplicationEngine
 
     override fun stop() {
-        engine.stop()
+        if (::engine.isInitialized) {
+            engine.stop()
+        }
+
     }
 
     override fun start(port: Int) {
