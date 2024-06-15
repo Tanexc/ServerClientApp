@@ -48,15 +48,10 @@ class AppServerImpl(
                     sendSerialized(getServerGestureMessage())
                     while(true) {
                         val message = receiveDeserialized<ClientMessage>()
-                        delay(2000)
+                        delay(1700)
                         launch(Dispatchers.IO) {
-                            val log = SwipeLog(
-                                client = message.client,
-                                info = message.message,
-                                dx = message.dx,
-                                dy = message.dy,
-                                duration = message.duration
-                            )
+                            val log = message.asSwipeLog()
+
                             insertSwipeLogsUseCase(log).collect { state ->
                                 when(state) {
                                     is DataState.Success -> {
