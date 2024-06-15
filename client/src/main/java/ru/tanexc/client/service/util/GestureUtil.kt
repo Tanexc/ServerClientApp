@@ -1,4 +1,4 @@
-package ru.tanexc.client.service
+package ru.tanexc.client.service.util
 
 import android.accessibilityservice.AccessibilityService
 import android.accessibilityservice.GestureDescription
@@ -24,8 +24,8 @@ fun AccessibilityService.gesture(
     val path = Path()
     path.moveTo(x, y)
     path.lineTo(x + x * dx.toFloat(), y + y * dy.toFloat())
-    Log.i("cum", "gesture")
     val gestureBuilder = GestureDescription.Builder()
+    Log.i("cum", "gesture")
     gestureBuilder.addStroke(GestureDescription.StrokeDescription(path, 0, duration))
     dispatchGesture(gestureBuilder.build(), null, null)
 }

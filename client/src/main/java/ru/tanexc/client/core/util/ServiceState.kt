@@ -1,5 +1,5 @@
 package ru.tanexc.client.core.util
 
 enum class ServiceState {
-    Running, Stopping, Stopped
+    Running, Stopping, Stopped, Undefined
 }

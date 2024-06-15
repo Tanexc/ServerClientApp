@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">ServerClientApp</string>
+    <string name="service_dialog_text">You should enable accessibility service before launch client.\n\nGo to Settings -> Accessibility and enable app\'s service</string>
+    <string name="service_dialog_title">Enable Accessibility service</string>
 </resources>

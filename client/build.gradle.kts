@@ -6,11 +6,11 @@ plugins {
 }
 
 android {
-    namespace = "ru.tanexc.serverclientapp"
+    namespace = "ru.tanexc.client"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "ru.tanexc.serverclientapp"
+        applicationId = "ru.tanexc.client"
         minSdk = 24
         targetSdk = 34
         versionCode = 1
@@ -54,6 +54,7 @@ dependencies {
     implementation(libs.androidx.ui.graphics)
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
+    implementation(libs.icons.extended)
 
     // ktor
     implementation(libs.ktor.client.core)

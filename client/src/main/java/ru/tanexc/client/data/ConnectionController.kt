@@ -7,6 +7,7 @@ import io.ktor.client.plugins.websocket.sendSerialized
 import io.ktor.client.plugins.websocket.webSocketSession
 import io.ktor.websocket.CloseReason
 import io.ktor.websocket.close
+import kotlinx.coroutines.cancel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.isActive
@@ -35,9 +36,6 @@ class ConnectionController(
             val message = session.receiveDeserialized<ServerMessage>()
             emit(DataState.Success(message))
         }
-        if (session.closeReason.await()?.knownReason != CloseReason.Codes.NORMAL) {
-            emit(DataState.Error)
-        }
     }
 
     suspend fun send(message: String, dx: Double, dy: Double, duration: Long, chromeOpened: Boolean) {
@@ -46,7 +44,9 @@ class ConnectionController(
         }
     }
 
-    suspend fun disconnect() {
-        session.close(CloseReason(CloseReason.Codes.NORMAL, ""))
+    fun disconnect() {
+        if (::session.isInitialized) {
+            session.cancel()
+        }
     }
 }

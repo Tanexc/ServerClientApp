@@ -5,4 +5,5 @@
     android:accessibilityFlags="flagDefault"
     android:canPerformGestures="true"
     android:notificationTimeout="100"
-    android:packageNames="ru.tanexc.client" />
+    android:packageNames="ru.tanexc.client"
+    android:canRetrieveWindowContent="true"/>
