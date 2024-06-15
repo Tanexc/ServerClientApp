@@ -15,8 +15,6 @@ import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
@@ -39,7 +37,7 @@ fun LaunchScreen(modifier: Modifier) {
                 .fillMaxWidth(0.5f)
                 .padding(32.dp, 0.dp),
             horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.Center
+            verticalArrangement = Arrangement.Center,
         ) {
             OutlinedTextField(
                 viewModel.port,
@@ -51,10 +49,10 @@ fun LaunchScreen(modifier: Modifier) {
                     }
                 },
                 label = { Text("Port") },
-                placeholder = { Text("$PORT_DEFAULT", modifier = Modifier.alpha(0.5f)) }
+                placeholder = { Text("$PORT_DEFAULT", modifier = Modifier.alpha(0.5f)) },
             )
             Spacer(Modifier.size(8.dp))
-            when(viewModel.serviceState) {
+            when (viewModel.serviceState) {
                 ServiceState.Running -> {
                     OutlinedButton(
                         modifier = Modifier.fillMaxWidth(),
@@ -62,13 +60,13 @@ fun LaunchScreen(modifier: Modifier) {
                         onClick = {
                             Intent(
                                 context.applicationContext,
-                                ServerService::class.java
+                                ServerService::class.java,
                             ).also {
                                 it.action = Actions.STOP.name
                                 context.applicationContext.startService(it)
                             }
-
-                        }) {
+                        },
+                    ) {
                         Text("Stop server")
                     }
                 }
@@ -85,17 +83,17 @@ fun LaunchScreen(modifier: Modifier) {
                             if (viewModel.serviceState != ServiceState.Running) {
                                 Intent(
                                     context.applicationContext,
-                                    ServerService::class.java
+                                    ServerService::class.java,
                                 ).also {
                                     it.action = Actions.START.name
                                     context.applicationContext.startService(it)
                                 }
                             }
-                        }) {
+                        },
+                    ) {
                         Text("Start server")
                     }
                 }
-
             }
         }
     }

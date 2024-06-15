@@ -8,14 +8,15 @@ import org.koin.core.module.dsl.singleOf
 import org.koin.dsl.module
 import ru.tanexc.client.data.ConnectionController
 
-val networkModule = module {
-    single<HttpClient> {
-        HttpClient(CIO) {
-            install(WebSockets) {
-                contentConverter = JacksonWebsocketContentConverter()
+val networkModule =
+    module {
+        single<HttpClient> {
+            HttpClient(CIO) {
+                install(WebSockets) {
+                    contentConverter = JacksonWebsocketContentConverter()
+                }
             }
         }
-    }
 
-    singleOf(::ConnectionController)
-}
+        singleOf(::ConnectionController)
+    }

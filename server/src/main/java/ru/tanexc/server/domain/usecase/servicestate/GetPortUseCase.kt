@@ -8,10 +8,8 @@ import org.koin.core.component.inject
 import org.koin.core.qualifier.named
 import ru.tanexc.server.data.datastore.Keys
 
-class GetPortUseCase: KoinComponent {
+class GetPortUseCase : KoinComponent {
     private val dataStore: DataStore<Preferences> by inject(named("server"))
 
-    suspend operator fun invoke(): String {
-        return dataStore.data.first()[Keys.PORT]?: ""
-    }
+    suspend operator fun invoke(): String = dataStore.data.first()[Keys.PORT] ?: ""
 }

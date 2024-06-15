@@ -1,10 +1,8 @@
 package ru.tanexc.server.util.service
 
-
 import android.app.Service
 import android.content.Intent
 import android.os.IBinder
-import android.util.Log
 import androidx.core.app.NotificationCompat
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -12,18 +10,13 @@ import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.launch
 import org.koin.android.ext.android.inject
 import ru.tanexc.server.R
-import ru.tanexc.server.core.PORT_DEFAULT
 import ru.tanexc.server.core.util.ServiceState
 import ru.tanexc.server.domain.usecase.servicestate.GetPortUseCase
 import ru.tanexc.server.domain.usecase.servicestate.GetServiceStateUseCase
 import ru.tanexc.server.domain.usecase.servicestate.SetServiceStateUseCase
 import ru.tanexc.server.util.server.AppServer
-import java.util.concurrent.ExecutorService
-import java.util.concurrent.Executors
-import java.util.concurrent.TimeUnit
 
-
-class ServerService: Service() {
+class ServerService : Service() {
     private val server: AppServer by inject()
     private val scope = CoroutineScope(SupervisorJob())
 
@@ -36,24 +29,31 @@ class ServerService: Service() {
     init {
         scope.launch(Dispatchers.Main) {
             getServiceStateUseCase().collect {
-                when(it) {
+                when (it) {
                     ServiceState.Running -> {
-                        server.start(getPortUseCase().toIntOrNull()?: 0)
+                        server.start(getPortUseCase().toIntOrNull() ?: 0)
                     }
+
                     ServiceState.Stopping -> {
                         server.stop()
                         setServiceStateUseCase(ServiceState.Stopped)
                     }
+
                     ServiceState.Stopped -> {
                         onDestroy()
                     }
+
                     else -> {}
                 }
             }
         }
     }
 
-    override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
+    override fun onStartCommand(
+        intent: Intent?,
+        flags: Int,
+        startId: Int,
+    ): Int {
         when (intent?.action) {
             Actions.START.toString() -> {
                 notification()
@@ -78,12 +78,14 @@ class ServerService: Service() {
     }
 
     private fun notification() {
-        startForeground(1,
-            NotificationCompat.Builder(this, "server_channel")
+        startForeground(
+            1,
+            NotificationCompat
+                .Builder(this, "server_channel")
                 .setSmallIcon(R.drawable.ic_launcher_foreground)
                 .setContentText("running")
                 .setContentTitle("Server")
-                .build()
+                .build(),
         )
     }
 }

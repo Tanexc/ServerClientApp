@@ -21,7 +21,6 @@ import androidx.compose.material3.IconButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
@@ -36,7 +35,7 @@ fun LogsCard(
     log: SwipeLog,
     onDelete: () -> Unit,
 ) {
-    val expanded = remember { mutableStateOf(false) }
+    val expanded = mutableStateOf(false)
     Card(
         onClick = { if (!expanded.value) expanded.value = true },
         modifier = modifier.fillMaxWidth(),
@@ -78,7 +77,12 @@ fun ExpandedContent(
         }
         Row {
             Text("client:", fontWeight = FontWeight.ExtraBold, modifier = Modifier.width(84.dp))
-            Text(log.client, modifier = Modifier.fillMaxWidth(), maxLines = 1, overflow = TextOverflow.Ellipsis)
+            Text(
+                log.client,
+                modifier = Modifier.fillMaxWidth(),
+                maxLines = 1,
+                overflow = TextOverflow.Ellipsis,
+            )
         }
         Row {
             Text("dx:", fontWeight = FontWeight.ExtraBold, modifier = Modifier.width(84.dp))

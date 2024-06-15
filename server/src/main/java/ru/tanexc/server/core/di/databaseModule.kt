@@ -11,19 +11,21 @@ import ru.tanexc.server.domain.usecase.logs.DeleteSwipeLogsUseCase
 import ru.tanexc.server.domain.usecase.logs.GetSwipeLogsUseCase
 import ru.tanexc.server.domain.usecase.logs.InsertSwipeLogsUseCase
 
-val databaseModule = module {
-    single<ServerDatabase> {
-        Room.databaseBuilder(
-            context = androidContext(),
-            klass = ServerDatabase::class.java,
-            name = "server_database"
-        ).build()
+val databaseModule =
+    module {
+        single<ServerDatabase> {
+            Room
+                .databaseBuilder(
+                    context = androidContext(),
+                    klass = ServerDatabase::class.java,
+                    name = "server_database",
+                ).build()
+        }
+
+        single<SwipeLogDao> { get<ServerDatabase>().swipeLogDao }
+
+        singleOf(::DeleteSwipeLogsUseCase)
+        singleOf(::DeleteSwipeLogsByIdUseCase)
+        singleOf(::InsertSwipeLogsUseCase)
+        singleOf(::GetSwipeLogsUseCase)
     }
-
-    single<SwipeLogDao> { get<ServerDatabase>().swipeLogDao }
-
-    singleOf(::DeleteSwipeLogsUseCase)
-    singleOf(::DeleteSwipeLogsByIdUseCase)
-    singleOf(::InsertSwipeLogsUseCase)
-    singleOf(::GetSwipeLogsUseCase)
-}

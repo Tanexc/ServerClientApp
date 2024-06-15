@@ -7,5 +7,5 @@ fun getServerGestureMessage(): ServerMessage =
     ServerMessage(
         Random.nextDouble(-0.9, 0.9),
         Random.nextDouble(-0.9, 0.9),
-        Random.nextLong(250, 1500)
+        Random.nextLong(250, 1500),
     )

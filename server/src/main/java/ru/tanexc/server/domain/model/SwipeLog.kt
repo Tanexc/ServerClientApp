@@ -11,5 +11,5 @@ data class SwipeLog(
     val info: String,
     val dx: Double,
     val dy: Double,
-    val duration: Long
+    val duration: Long,
 )

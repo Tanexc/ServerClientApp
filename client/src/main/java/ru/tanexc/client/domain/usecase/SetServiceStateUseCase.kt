@@ -9,7 +9,7 @@ import org.koin.core.qualifier.named
 import ru.tanexc.client.core.util.ServiceState
 import ru.tanexc.client.data.local.Keys
 
-class SetServiceStateUseCase: KoinComponent {
+class SetServiceStateUseCase : KoinComponent {
     private val dataStore: DataStore<Preferences> by inject(named("service"))
 
     suspend operator fun invoke(state: ServiceState) {

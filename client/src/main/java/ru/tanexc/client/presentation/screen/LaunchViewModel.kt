@@ -25,8 +25,8 @@ class LaunchViewModel(
     private val getPortUseCase: GetPortUseCase,
     private val getHostUseCase: GetHostUseCase,
     private val getStopOnResumeUseCase: GetStopOnResumeUseCase,
-    private val setStopOnResumeUseCase: SetStopOnResumeUseCase
-): ViewModel() {
+    private val setStopOnResumeUseCase: SetStopOnResumeUseCase,
+) : ViewModel() {
     private val _serviceState: MutableState<ServiceState> = mutableStateOf(ServiceState.Undefined)
     val serviceState by _serviceState
 
@@ -39,15 +39,14 @@ class LaunchViewModel(
     private val _resume = mutableStateOf(false)
     val resume by _resume
 
-
     init {
         viewModelScope.launch(Dispatchers.Main) {
             _port.value = getPortUseCase()
             _host.value = getHostUseCase()
             _resume.value = getStopOnResumeUseCase()
-              getServiceStateUseCase().collect {
-                  _serviceState.value = it
-              }
+            getServiceStateUseCase().collect {
+                _serviceState.value = it
+            }
         }
     }
 
@@ -76,6 +75,5 @@ class LaunchViewModel(
         viewModelScope.launch(Dispatchers.IO) {
             setStopOnResumeUseCase(resume)
         }
-
     }
 }

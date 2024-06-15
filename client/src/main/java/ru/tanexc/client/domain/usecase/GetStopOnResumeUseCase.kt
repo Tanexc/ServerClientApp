@@ -8,10 +8,8 @@ import org.koin.core.component.inject
 import org.koin.core.qualifier.named
 import ru.tanexc.client.data.local.Keys
 
-class GetStopOnResumeUseCase: KoinComponent {
+class GetStopOnResumeUseCase : KoinComponent {
     private val dataStore: DataStore<Preferences> by inject(named("client"))
 
-    suspend operator fun invoke(): Boolean {
-        return dataStore.data.first()[Keys.STOP_ON_RESUME]?: false
-    }
+    suspend operator fun invoke(): Boolean = dataStore.data.first()[Keys.STOP_ON_RESUME] ?: false
 }

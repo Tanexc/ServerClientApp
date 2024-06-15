@@ -1,6 +1,5 @@
 package ru.tanexc.server.presentation.main
 
-import android.content.Context
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.outlined.Feed
@@ -41,26 +40,24 @@ fun MainScreen() {
                         label = { Text(Screen.Launch.name) },
                         selected = currentScreen.value == Screen.Launch,
                         icon = { Icon(Icons.Outlined.RocketLaunch, null) },
-                        onClick = { currentScreen.value = Screen.Launch }
+                        onClick = { currentScreen.value = Screen.Launch },
                     )
                     NavigationBarItem(
                         alwaysShowLabel = false,
                         label = { Text(Screen.Logs.name) },
                         selected = currentScreen.value == Screen.Logs,
                         icon = { Icon(Icons.AutoMirrored.Outlined.Feed, null) },
-                        onClick = { currentScreen.value = Screen.Logs }
+                        onClick = { currentScreen.value = Screen.Logs },
                     )
                 }
-            }
+            },
         ) { paddings ->
-            NavHost(navController) {screen ->
-                when(screen) {
+            NavHost(navController) { screen ->
+                when (screen) {
                     Screen.Launch -> LaunchScreen(Modifier.padding(paddings))
                     else -> LogsScreen(Modifier.padding(paddings))
                 }
             }
-
         }
-
     }
 }

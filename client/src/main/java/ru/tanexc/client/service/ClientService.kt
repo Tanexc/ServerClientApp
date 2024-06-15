@@ -70,7 +70,7 @@ class ClientService : AccessibilityService() {
                                         else -> {}
                                     }
                                 }
-                            } catch (_: Exception) {
+                            } catch (e: Exception) {
                                 setServiceStateUseCase(ServiceState.Stopping)
                             }
                         }

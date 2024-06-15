@@ -8,7 +8,8 @@ import ru.tanexc.server.util.server.AppServerImpl
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
 
-val serverModule = module {
-    singleOf(::AppServerImpl) bind AppServer::class
-    single<ExecutorService> { Executors.newSingleThreadExecutor() }
-}
+val serverModule =
+    module {
+        singleOf(::AppServerImpl) bind AppServer::class
+        single<ExecutorService> { Executors.newSingleThreadExecutor() }
+    }

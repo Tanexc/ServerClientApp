@@ -14,7 +14,6 @@ import androidx.compose.material.icons.outlined.SettingsAccessibility
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Button
 import androidx.compose.material3.CircularProgressIndicator
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.OutlinedTextField
@@ -128,7 +127,12 @@ fun LaunchScreen() {
                 icon = {
                     Icon(Icons.Outlined.SettingsAccessibility, contentDescription = null)
                 },
-                title = { Text(stringResource(R.string.service_dialog_title), textAlign = TextAlign.Center) },
+                title = {
+                    Text(
+                        stringResource(R.string.service_dialog_title),
+                        textAlign = TextAlign.Center,
+                    )
+                },
                 text = {
                     Text(stringResource(R.string.service_dialog_text), textAlign = TextAlign.Center)
                 },

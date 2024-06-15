@@ -2,20 +2,12 @@ package ru.tanexc.client.service.util
 
 import android.accessibilityservice.AccessibilityService
 import android.accessibilityservice.GestureDescription
-import android.content.Context
 import android.graphics.Path
-import android.os.Build
-import android.util.DisplayMetrics
-import android.util.Log
-import android.view.WindowManager
-import androidx.annotation.RequiresApi
-import com.fasterxml.jackson.annotation.JsonProperty.Access
-import kotlin.time.Duration
 
 fun AccessibilityService.gesture(
     dx: Double,
     dy: Double,
-    duration: Long
+    duration: Long,
 ) {
     val metrics = resources.displayMetrics
     val x: Float = metrics.widthPixels.toFloat() / 2
@@ -25,7 +17,6 @@ fun AccessibilityService.gesture(
     path.moveTo(x, y)
     path.lineTo(x + x * dx.toFloat(), y + y * dy.toFloat())
     val gestureBuilder = GestureDescription.Builder()
-    Log.i("cum", "gesture")
     gestureBuilder.addStroke(GestureDescription.StrokeDescription(path, 0, duration))
     dispatchGesture(gestureBuilder.build(), null, null)
 }

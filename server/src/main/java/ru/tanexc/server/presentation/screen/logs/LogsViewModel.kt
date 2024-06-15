@@ -6,11 +6,8 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.launch
 import ru.tanexc.server.core.util.DataState
-import ru.tanexc.server.core.util.UIState
 import ru.tanexc.server.domain.model.SwipeLog
 import ru.tanexc.server.domain.usecase.logs.DeleteSwipeLogsByIdUseCase
 import ru.tanexc.server.domain.usecase.logs.DeleteSwipeLogsUseCase
@@ -19,7 +16,7 @@ import ru.tanexc.server.domain.usecase.logs.GetSwipeLogsUseCase
 class LogsViewModel(
     private val getLogsUseCase: GetSwipeLogsUseCase,
     private val deleteLogsUseCase: DeleteSwipeLogsUseCase,
-    private val deleteLogsByIdUseCase: DeleteSwipeLogsByIdUseCase
+    private val deleteLogsByIdUseCase: DeleteSwipeLogsByIdUseCase,
 ) : ViewModel() {
     private val _data: MutableState<List<SwipeLog>> = mutableStateOf(emptyList())
     val data by _data
@@ -33,11 +30,11 @@ class LogsViewModel(
                     is DataState.Success -> {
                         _data.value = state.data
                     }
+
                     else -> {}
                 }
             }
         }
-
     }
 
     fun getNextPage() {
@@ -48,6 +45,7 @@ class LogsViewModel(
                     is DataState.Success -> {
                         _data.value += state.data
                     }
+
                     else -> {}
                 }
             }
@@ -62,6 +60,7 @@ class LogsViewModel(
                     is DataState.Success -> {
                         _data.value = emptyList()
                     }
+
                     else -> {}
                 }
             }
@@ -70,9 +69,15 @@ class LogsViewModel(
 
     fun deleteById(id: Long) {
         viewModelScope.launch(Dispatchers.IO) {
-            _data.value = _data.value.filter { it.id != id }
-            deleteLogsByIdUseCase(id)
+            deleteLogsByIdUseCase(id).collect { state ->
+                when (state) {
+                    is DataState.Success -> {
+                        _data.value = _data.value.filter { it.id != id }
+                    }
+
+                    else -> {}
+                }
+            }
         }
     }
-
 }

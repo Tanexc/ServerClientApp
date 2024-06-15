@@ -1,7 +1,6 @@
 package ru.tanexc.client.data.local
 
 import androidx.datastore.preferences.core.booleanPreferencesKey
-import androidx.datastore.preferences.core.intPreferencesKey
 import androidx.datastore.preferences.core.stringPreferencesKey
 
 object Keys {

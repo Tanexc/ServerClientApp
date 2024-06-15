@@ -8,7 +8,7 @@ import org.koin.core.component.inject
 import org.koin.core.qualifier.named
 import ru.tanexc.server.data.datastore.Keys
 
-class SetPortUseCase: KoinComponent {
+class SetPortUseCase : KoinComponent {
     private val dataStore: DataStore<Preferences> by inject(named("server"))
 
     suspend operator fun invoke(port: Int) {

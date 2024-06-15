@@ -17,8 +17,8 @@ class LaunchViewModel(
     private val getServiceStateUseCase: GetServiceStateUseCase,
     private val setServiceStateUseCase: SetServiceStateUseCase,
     private val getPortUseCase: GetPortUseCase,
-    private val setPortUseCase: SetPortUseCase
-): ViewModel() {
+    private val setPortUseCase: SetPortUseCase,
+) : ViewModel() {
     private val _serviceState: MutableState<ServiceState> = mutableStateOf(ServiceState.Undefined)
     val serviceState by _serviceState
 
@@ -28,9 +28,9 @@ class LaunchViewModel(
     init {
         viewModelScope.launch(Dispatchers.Main) {
             _port.value = getPortUseCase()
-              getServiceStateUseCase().collect {
-                  _serviceState.value = it
-              }
+            getServiceStateUseCase().collect {
+                _serviceState.value = it
+            }
         }
     }
 

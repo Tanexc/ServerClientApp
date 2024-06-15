@@ -11,7 +11,7 @@ import ru.tanexc.client.core.util.getDeviceName
 import ru.tanexc.client.data.local.Keys
 import java.util.UUID
 
-class GetClientIdUseCase: KoinComponent {
+class GetClientIdUseCase : KoinComponent {
     private val dataStore: DataStore<Preferences> by inject(named("client"))
 
     suspend operator fun invoke(): String {
@@ -24,5 +24,4 @@ class GetClientIdUseCase: KoinComponent {
         }
         return data
     }
-
 }

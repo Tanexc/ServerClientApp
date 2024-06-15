@@ -5,7 +5,8 @@ import org.koin.dsl.module
 import ru.tanexc.server.presentation.screen.launch.LaunchViewModel
 import ru.tanexc.server.presentation.screen.logs.LogsViewModel
 
-val viewModelModule = module {
-    viewModelOf(::LogsViewModel)
-    viewModelOf(::LaunchViewModel)
-}
+val viewModelModule =
+    module {
+        viewModelOf(::LogsViewModel)
+        viewModelOf(::LaunchViewModel)
+    }

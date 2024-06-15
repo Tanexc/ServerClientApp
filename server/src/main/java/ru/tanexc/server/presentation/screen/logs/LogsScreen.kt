@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -18,8 +19,6 @@ import androidx.compose.material.icons.outlined.Delete
 import androidx.compose.material.icons.outlined.SettingsAccessibility
 import androidx.compose.material.icons.outlined.TextSnippet
 import androidx.compose.material3.AlertDialog
-import androidx.compose.material3.ColorScheme
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
@@ -35,49 +34,58 @@ import androidx.compose.ui.unit.dp
 import org.koin.androidx.compose.koinViewModel
 import ru.tanexc.server.presentation.ui.theme.colorScheme
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun LogsScreen(modifier: Modifier) {
     val viewModel: LogsViewModel = koinViewModel()
     val showDialog = remember { mutableStateOf(false) }
     Box(modifier.fillMaxSize()) {
         if (viewModel.data.isNotEmpty()) {
-        LazyColumn(Modifier.fillMaxSize(), contentPadding = PaddingValues(16.dp, 0.dp)) {
-            items(viewModel.data) { log ->
-                LogsCard(
-                    modifier = Modifier.padding(0.dp, 4.dp),
-                    log,
-                    onDelete = { viewModel.deleteById(log.id) },
-                )
-            }
-            item {
-                LaunchedEffect(true) {
-                    viewModel.getNextPage()
+            LazyColumn(Modifier.fillMaxSize(), contentPadding = PaddingValues(16.dp, 0.dp)) {
+                items(viewModel.data) { log ->
+                    LogsCard(
+                        modifier = Modifier.padding(0.dp, 4.dp),
+                        log,
+                        onDelete = { viewModel.deleteById(log.id) },
+                    )
+                }
+                item {
+                    LaunchedEffect(true) {
+                        viewModel.getNextPage()
+                    }
+                    Spacer(Modifier.size(16.dp))
                 }
             }
-        }
-        FloatingActionButton(
-            modifier = Modifier.align(Alignment.BottomEnd).padding(16.dp),
-            onClick = { showDialog.value = true },
-            content = {
-                Row(
-                    modifier = Modifier.padding(16.dp),
-                    verticalAlignment = Alignment.CenterVertically,
-                ) {
-                    Icon(Icons.Outlined.Delete, null)
-                    Text("Delete all")
-                }
-            },
-        )
+            FloatingActionButton(
+                modifier = Modifier.align(Alignment.BottomEnd).padding(16.dp),
+                onClick = { showDialog.value = true },
+                content = {
+                    Row(
+                        modifier = Modifier.padding(16.dp),
+                        verticalAlignment = Alignment.CenterVertically,
+                    ) {
+                        Icon(Icons.Outlined.Delete, null)
+                        Text("Delete all")
+                    }
+                },
+            )
         } else {
-            Box(Modifier.align(Alignment.Center).background(colorScheme.secondary.copy(0.12f), RoundedCornerShape(16.dp))) {
-                Column(Modifier.padding(16.dp), horizontalAlignment = Alignment.CenterHorizontally) {
-                    Icon(Icons.AutoMirrored.Outlined.TextSnippet, null, modifier = Modifier.size(56.dp))
+            Box(
+                Modifier
+                    .align(Alignment.Center)
+                    .background(colorScheme.secondary.copy(0.12f), RoundedCornerShape(16.dp)),
+            ) {
+                Column(
+                    Modifier.padding(16.dp),
+                    horizontalAlignment = Alignment.CenterHorizontally,
+                ) {
+                    Icon(
+                        Icons.AutoMirrored.Outlined.TextSnippet,
+                        null,
+                        modifier = Modifier.size(56.dp),
+                    )
                     Text("Logs will be displayed here")
                 }
             }
-
-
         }
     }
     AnimatedVisibility(showDialog.value) {

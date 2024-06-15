@@ -26,7 +26,7 @@ androidx-ui = { group = "androidx.compose.ui", name = "ui" }
 androidx-ui-graphics = { group = "androidx.compose.ui", name = "ui-graphics" }
 androidx-ui-tooling-preview = { group = "androidx.compose.ui", name = "ui-tooling-preview" }
 androidx-material3 = { group = "androidx.compose.material3", name = "material3" }
-icons-extended = {group = "androidx.compose.material", name = "material-icons-extended", version.ref = "icons"}
+icons-extended = { group = "androidx.compose.material", name = "material-icons-extended", version.ref = "icons" }
 
 # koin DI
 koin-android = { module = "io.insert-koin:koin-android", version.ref = "koin" }
@@ -49,18 +49,18 @@ ktor-serialization-kotlinx-json-jvm = { module = "io.ktor:ktor-serialization-kot
 ktor-server-content-negotiation = { module = "io.ktor:ktor-server-content-negotiation", version.ref = "ktorServer" }
 ktor-server-core-jvm = { module = "io.ktor:ktor-server-core-jvm", version.ref = "ktorServer" }
 ktor-server-netty-jvm = { module = "io.ktor:ktor-server-netty-jvm", version.ref = "ktorServer" }
-ktor-server-websockets = { module = "io.ktor:ktor-server-websockets", version.ref = "ktorServer"  }
+ktor-server-websockets = { module = "io.ktor:ktor-server-websockets", version.ref = "ktorServer" }
 ktor-serialization-kotlinx-protobuf = { module = "io.ktor:ktor-serialization-kotlinx-protobuf", version.ref = "ktorServer" }
 
 # data
 androidx-datastore-preferences = { module = "androidx.datastore:datastore-preferences", version.ref = "datastorePreferences" }
-androidx-room-compiler = { module = "androidx.room:room-compiler", version.ref="room" }
-androidx-room-runtime = { module = "androidx.room:room-runtime", version.ref="room"  }
+androidx-room-compiler = { module = "androidx.room:room-compiler", version.ref = "room" }
+androidx-room-runtime = { module = "androidx.room:room-runtime", version.ref = "room" }
 androidx-room-ktx = { group = "androidx.room", name = "room-ktx", version.ref = "room" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
 jetbrains-kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
-ksp = {id = "com.google.devtools.ksp", version.ref = "ksp"}
+ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
 compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
 jetbrainsCompose = { id = "org.jetbrains.compose", version.ref = "compose" }
