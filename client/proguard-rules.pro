@@ -19,3 +19,14 @@
 # If you keep the line number information, uncomment this to
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
+
+-keep class io.ktor.** { *; }
+-dontwarn io.ktor.**
+
+-keep class io.netty.** { *; }
+-dontwarn io.netty.**
+
+-keep class org.slf4j.** { *; }
+-dontwarn org.slf4j.**
+
+-keep class ru.tanexc.** { *; }

@@ -1,5 +1,5 @@
 <resources>
     <string name="app_name">Client</string>
-    <string name="service_dialog_text">You should enable accessibility service before launch client.\n\nGo to Settings -> Accessibility and enable app\'s service</string>
+    <string name="service_dialog_text">You should enable accessibility service before launch client.\n\nGo to Settings -> Accessibility and enable app\'s service. If that feature disabled due to new Android version: Go to info about Client app -> tap to 3 dots -> Allow restricted settings</string>
     <string name="service_dialog_title">Enable Accessibility service</string>
 </resources>

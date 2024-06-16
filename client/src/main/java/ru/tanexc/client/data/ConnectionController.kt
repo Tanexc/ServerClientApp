@@ -24,12 +24,19 @@ class ConnectionController(
     fun connect(
         host: String,
         port: Int,
+        onSuccess: suspend () -> Unit,
+        onFailure: suspend () -> Unit
     ): Flow<DataState<ServerMessage>> =
         flow {
             emit(DataState.Loading)
 
             clientId = getClientIdUseCase()
-            session = client.webSocketSession(host = host, port = port, path = "/gestures")
+            try {
+                session = client.webSocketSession(host = host, port = port, path = "/gestures")
+                onSuccess()
+            } catch (e: Exception) {
+                onFailure()
+            }
 
             while (session.isActive) {
                 val message = session.receiveDeserialized<ServerMessage>()

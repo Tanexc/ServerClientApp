@@ -1,10 +1,13 @@
 package ru.tanexc.client.service
 
 import android.accessibilityservice.AccessibilityService
-import android.app.PendingIntent
+import android.app.NotificationManager
 import android.content.Intent
 import android.net.Uri
+import android.os.Handler
+import android.os.Looper
 import android.view.accessibility.AccessibilityEvent
+import android.widget.Toast
 import androidx.core.app.NotificationCompat
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -46,12 +49,17 @@ class ClientService : AccessibilityService() {
                                     controller.connect(
                                         getHostUseCase(),
                                         getPortUseCase().let { port -> if (port.isEmpty()) 8081 else port.toInt() },
-                                    )
-                                applicationContext
-                                    .launchActivity(
-                                        "com.android.chrome",
-                                        Uri.parse("https://www.google.com"),
-                                        Intent.FLAG_ACTIVITY_NEW_TASK,
+                                        onSuccess = {
+                                            applicationContext
+                                                .launchActivity(
+                                                    "com.android.chrome",
+                                                    Uri.parse("https://www.google.com"),
+                                                    Intent.FLAG_ACTIVITY_NEW_TASK,
+                                                )
+                                        },
+                                        onFailure = {
+                                            setServiceStateUseCase(ServiceState.Stopping)
+                                        },
                                     )
                                 delay(500)
                                 flow.collect { state ->
