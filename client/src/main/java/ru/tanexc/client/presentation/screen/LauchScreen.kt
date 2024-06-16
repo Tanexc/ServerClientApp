@@ -37,7 +37,7 @@ import ru.tanexc.client.core.HOST_DEFAULT
 import ru.tanexc.client.core.PORT_DEFAULT
 import ru.tanexc.client.core.util.ServiceState
 import ru.tanexc.client.core.util.isAccessibilityEnabled
-import ru.tanexc.client.service.ClientService
+import ru.tanexc.client.presentation.service.ClientService
 
 @Composable
 fun LaunchScreen() {
@@ -85,7 +85,7 @@ fun LaunchScreen() {
                 verticalAlignment = Alignment.CenterVertically,
             ) {
                 Text("Stop client on reopen app")
-                Switch(enabled = true, checked = viewModel.resume, onCheckedChange = {
+                Switch(enabled = viewModel.serviceState == ServiceState.Stopped, checked = viewModel.resume, onCheckedChange = {
                     viewModel.setResume(it)
                 })
             }

@@ -1,4 +1,4 @@
-package ru.tanexc.client.service.util
+package ru.tanexc.client.presentation.service.util
 
 import android.content.Context
 import android.content.Intent

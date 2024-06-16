@@ -23,8 +23,8 @@ import androidx.compose.ui.unit.dp
 import org.koin.androidx.compose.koinViewModel
 import ru.tanexc.server.core.PORT_DEFAULT
 import ru.tanexc.server.core.util.ServiceState
-import ru.tanexc.server.util.service.Actions
-import ru.tanexc.server.util.service.ServerService
+import ru.tanexc.server.presentation.util.service.Actions
+import ru.tanexc.server.presentation.util.service.ServerService
 
 @Composable
 fun LaunchScreen(modifier: Modifier) {

@@ -1,4 +1,4 @@
-package ru.tanexc.client.service
+package ru.tanexc.client.presentation.service
 
 import android.accessibilityservice.AccessibilityService
 import android.app.NotificationManager
@@ -23,8 +23,8 @@ import ru.tanexc.client.domain.usecase.GetHostUseCase
 import ru.tanexc.client.domain.usecase.GetPortUseCase
 import ru.tanexc.client.domain.usecase.GetServiceStateUseCase
 import ru.tanexc.client.domain.usecase.SetServiceStateUseCase
-import ru.tanexc.client.service.util.gesture
-import ru.tanexc.client.service.util.launchActivity
+import ru.tanexc.client.presentation.service.util.gesture
+import ru.tanexc.client.presentation.service.util.launchActivity
 
 @OptIn(ExperimentalStdlibApi::class)
 class ClientService : AccessibilityService() {

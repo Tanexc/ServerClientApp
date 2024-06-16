@@ -11,7 +11,7 @@ import ru.tanexc.client.core.di.datastoreModule
 import ru.tanexc.client.core.di.networkModule
 import ru.tanexc.client.core.di.useCaseModule
 import ru.tanexc.client.core.di.viewModelModule
-import ru.tanexc.client.service.ClientService
+import ru.tanexc.client.presentation.service.ClientService
 
 class ClientApplication : Application() {
     override fun onCreate() {

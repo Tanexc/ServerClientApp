@@ -32,7 +32,7 @@
         </activity>
 
         <service
-            android:name="ru.tanexc.client.service.ClientService"
+            android:name="ru.tanexc.client.presentation.service.ClientService"
             android:enabled="true"
             android:exported="true"
             android:foregroundServiceType="remoteMessaging"

@@ -1,4 +1,4 @@
-package ru.tanexc.server.util.server.util
+package ru.tanexc.server.presentation.util.server.util
 
 import com.fasterxml.jackson.databind.SerializationFeature
 import io.ktor.serialization.jackson.JacksonWebsocketContentConverter

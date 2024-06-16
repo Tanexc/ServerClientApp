@@ -1,4 +1,4 @@
-package ru.tanexc.server.util.service
+package ru.tanexc.server.presentation.util.service
 
 import android.app.Service
 import android.content.Intent
@@ -14,7 +14,7 @@ import ru.tanexc.server.core.util.ServiceState
 import ru.tanexc.server.domain.usecase.servicestate.GetPortUseCase
 import ru.tanexc.server.domain.usecase.servicestate.GetServiceStateUseCase
 import ru.tanexc.server.domain.usecase.servicestate.SetServiceStateUseCase
-import ru.tanexc.server.util.server.AppServer
+import ru.tanexc.server.presentation.util.server.AppServer
 
 class ServerService : Service() {
     private val server: AppServer by inject()

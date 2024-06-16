@@ -28,7 +28,7 @@
         </activity>
 
         <service
-            android:name=".util.service.ServerService"
+            android:name=".presentation.util.service.ServerService"
             android:enabled="true"
             android:exported="false"
             android:foregroundServiceType="remoteMessaging" />

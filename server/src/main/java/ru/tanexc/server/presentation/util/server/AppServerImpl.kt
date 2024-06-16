@@ -1,4 +1,4 @@
-package ru.tanexc.server.util.server
+package ru.tanexc.server.presentation.util.server
 
 import io.ktor.server.engine.ApplicationEngine
 import io.ktor.server.engine.embeddedServer
@@ -14,8 +14,8 @@ import kotlinx.coroutines.launch
 import ru.tanexc.server.core.util.DataState
 import ru.tanexc.server.domain.model.ClientMessage
 import ru.tanexc.server.domain.usecase.logs.InsertSwipeLogsUseCase
-import ru.tanexc.server.util.server.util.config
-import ru.tanexc.server.util.server.util.getServerGestureMessage
+import ru.tanexc.server.presentation.util.server.util.config
+import ru.tanexc.server.presentation.util.server.util.getServerGestureMessage
 
 class AppServerImpl(
     private val insertSwipeLogsUseCase: InsertSwipeLogsUseCase,

@@ -1,4 +1,4 @@
-package ru.tanexc.server.util.server.util
+package ru.tanexc.server.presentation.util.server.util
 
 import ru.tanexc.server.domain.model.ServerMessage
 import kotlin.random.Random
